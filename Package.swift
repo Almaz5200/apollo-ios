@@ -20,6 +20,7 @@ let package = Package(
     .library(name: "ApolloWebSocket", targets: ["ApolloWebSocket"]),
     .library(name: "ApolloTestSupport", targets: ["ApolloTestSupport"]),
     .executable(name: "apollo-ios-cli", targets: ["apollo-ios-cli"]),
+    .plugin(name: "CodegenPlugin", targets: ["CodegenPlugin"]),
   ],
   dependencies: [
     .package(
@@ -103,6 +104,15 @@ let package = Package(
       dependencies: [
         "ApolloCodegenLib",
         .product(name: "ArgumentParser", package: "swift-argument-parser"),
+      ]),
+    .plugin(
+      name: "CodegenPlugin",
+      capability: .command(
+        intent: .custom(
+          verb: "generate",
+          description: "Generate Swift code for the configured GraphQL schema and operations.")),
+      dependencies: [
+        "apollo-ios-cli"
       ]),
   ]
 )
