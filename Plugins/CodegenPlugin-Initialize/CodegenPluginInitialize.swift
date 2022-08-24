@@ -3,6 +3,11 @@ import PackagePlugin
 
 @main struct CodegenPluginInitialize: CommandPlugin {
   func performCommand(context: PluginContext, arguments: [String]) async throws {
-    let executableURL = context.codegenExecutable
+    let process = Process()
+    process.executableURL = try context.codegenExecutable
+    process.arguments = ["init"] + arguments
+
+    try process.run()
+    process.waitUntilExit()
   }
 }
