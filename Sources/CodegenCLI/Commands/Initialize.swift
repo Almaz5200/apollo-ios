@@ -2,11 +2,11 @@ import Foundation
 import ArgumentParser
 import ApolloCodegenLib
 
-struct Initialize: ParsableCommand {
+public struct Initialize: ParsableCommand {
 
   // MARK: - Configuration
 
-  static var configuration = CommandConfiguration(
+  public static var configuration = CommandConfiguration(
     commandName: "init",
     abstract: "Initialize a new configuration with defaults."
   )
@@ -34,7 +34,9 @@ struct Initialize: ParsableCommand {
 
   // MARK: - Implementation
 
-  func run() throws {
+  public init() { }
+
+  public func run() throws {
     try _run()
   }
 
